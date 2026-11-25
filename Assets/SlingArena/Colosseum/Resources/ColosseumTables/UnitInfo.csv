@@ -1,0 +1,10 @@
+unit_key,name,health,damage,health_per_level,damage_per_level
+axe,Viking,120,40,12,4
+sword,Knight,120,46,12,4.6
+hammer,Orc,120,36,12,3.6
+bow,Archer,120,20,12,2
+goblin,Goblin,120,16,12,1.6
+spike,Spike,120,46,12,4.6
+pirate,Pirate,120,30,12,3
+brute,Brute,120,14,12,1.4
+dawn,Dawn,120,19,12,1.9
