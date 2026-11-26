@@ -1,3 +1,0 @@
-idx,#설명,use,map,stage_from,stage_to,attempt_from,attempt_to,random_count,force_events,ban_events,editor_test
-1,기본: 모든 스테이지에서 랜덤 이벤트 1개,1,,0,0,0,0,1,,,0
-6,"(테스트용, 꺼 둠) use를 1로 바꾸면 유니티 에디터에서만 모든 판에 적용된다. force_events에 보고 싶은 이벤트를 적는다 (예: lava@1 = 1라운드부터 용암).",0,,0,0,0,0,-1,,,1

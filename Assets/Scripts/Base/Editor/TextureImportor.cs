@@ -27,10 +27,7 @@ public class TextureImportor : AssetPostprocessor
 
             importer.SetTextureSettings(settings);
 
-            // These two lobby icons also fill the centre of a reward screen. Preserve their painted rims and alpha.
-            var format = assetPath == "Assets/SlingArena/Colosseum/Resources/ColosseumUI/lobby-cup.png"
-                || assetPath == "Assets/SlingArena/Colosseum/Resources/ColosseumUI/chest.png"
-                ? TextureImporterFormat.RGBA32 : TextureImporterFormat.ASTC_8x8;
+            var format = TextureImporterFormat.ASTC_8x8;
             // Android 플랫폼 설정
             SetPlatformTextureSettings(importer, "Android", format);
 

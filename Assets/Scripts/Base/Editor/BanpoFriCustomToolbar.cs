@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 
 using System;
 using System.IO;
@@ -117,7 +117,7 @@ public class BanpoFriCustomToolbar
     public static MainToolbarElement DeleteMasterButton()
     {
         var icon = EditorGUIUtility.IconContent("TreeEditor.Trash").image as Texture2D;
-        var content = new MainToolbarContent(icon, "Reset Master data and Smash Rumble progress");
+        var content = new MainToolbarContent(icon, "Reset Master data");
         return new MainToolbarButton(content, ResetMasterData);
     }
 
@@ -156,12 +156,11 @@ public class BanpoFriCustomToolbar
             File.Delete(master + suffix);
             File.Delete(master + suffix + ".meta");
         }
-        SlingArena.Colosseum.ColosseumSave.ResetEditorProgress();
         if (EditorPrefs.GetString(SelectedSaveKey, "Master") != "Master")
             EditorPrefs.SetString(SelectedSaveKey, "Master");
         AssetDatabase.Refresh();
         MainToolbar.Refresh("BanpoFri/SaveData");
-        Debug.Log("마스터 데이터와 Smash Rumble 진행 기록을 초기화했습니다. 다음 Play에서 첫 전투를 시작합니다.");
+        Debug.Log("마스터 데이터를 초기화했습니다.");
     }
 
     [MainToolbarElement("BanpoFri/SaveData", defaultDockPosition = MainToolbarDockPosition.Right)]

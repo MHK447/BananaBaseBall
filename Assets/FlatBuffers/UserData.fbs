@@ -56,6 +56,10 @@ table UserData {
   reserved18:ubyte (deprecated);
   reserved19:ubyte (deprecated);
 
+  // @AutoCreate
+  // SHOW BALL (바나나볼 래그돌 야구) 진행 데이터. 새 필드는 항상 이 아래(테이블 끝)에 추가
+  showballdata:ShowBallData;
+  // @EndCreate
 
 }
 
@@ -83,6 +87,16 @@ table ItemData
    itemtype:int = 0;
    itemidx:int = 0; 
    itemcnt:int = 0;   // @ReactiveProperty
+}
+
+// SHOW BALL 진행 데이터 (Assets/BananaBall/SaveBridge/ShowBallSaveBridge.cs 에서 사용)
+table ShowBallData {
+  lineup:[int];        // 타순, Role 값 (0 파워, 1 콘택트, 2 주루)
+  fans:int = 0;        // 누적 팬
+  matches:int = 0;     // 끝까지 치른 경기 수
+  lastvisitor:int = 0; // 지난 경기 선공 (0 기록 없음, 1 코럴, 2 청록)
+  hints:[string];      // 이미 본 첫 안내 키
+  matchlog:[string];   // 최근 경기 기록 (최대 20개)
 }
 
 root_type UserData;

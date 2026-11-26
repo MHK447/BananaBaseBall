@@ -67,6 +67,7 @@ public struct UserData : IFlatbufferObject
   public bool MutateTrainingatkspeed(int trainingatkspeed) { int o = __p.__offset(36); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, trainingatkspeed); return true; } else { return false; } }
   public int Trainingcoin { get { int o = __p.__offset(38); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
   public bool MutateTrainingcoin(int trainingcoin) { int o = __p.__offset(38); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, trainingcoin); return true; } else { return false; } }
+  public BanpoFri.Data.ShowBallData? Showballdata { get { int o = __p.__offset(44); return o != 0 ? (BanpoFri.Data.ShowBallData?)(new BanpoFri.Data.ShowBallData()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
 
   public static Offset<BanpoFri.Data.UserData> CreateUserData(FlatBufferBuilder builder,
       int cash = 0,
@@ -86,12 +87,14 @@ public struct UserData : IFlatbufferObject
       long resetdaytime = 0,
       int trainingatk = 0,
       int trainingatkspeed = 0,
-      int trainingcoin = 0) {
-    builder.StartTable(20);
+      int trainingcoin = 0,
+      Offset<BanpoFri.Data.ShowBallData> showballdataOffset = default(Offset<BanpoFri.Data.ShowBallData>)) {
+    builder.StartTable(21);
     UserData.AddResetdaytime(builder, resetdaytime);
     UserData.AddUuid(builder, uuid);
     UserData.AddGamestarttime(builder, gamestarttime);
     UserData.AddLastlogintime(builder, lastlogintime);
+    UserData.AddShowballdata(builder, showballdataOffset);
     UserData.AddTrainingcoin(builder, trainingcoin);
     UserData.AddTrainingatkspeed(builder, trainingatkspeed);
     UserData.AddTrainingatk(builder, trainingatk);
@@ -109,7 +112,7 @@ public struct UserData : IFlatbufferObject
     return UserData.EndUserData(builder);
   }
 
-  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(20); }
+  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(21); }
   public static void AddCash(FlatBufferBuilder builder, int cash) { builder.AddInt(0, cash, 0); }
   public static void AddBuyinappids(FlatBufferBuilder builder, StringOffset buyinappidsOffset) { builder.AddOffset(1, buyinappidsOffset.Value, 0); }
   public static void AddTutorial(FlatBufferBuilder builder, VectorOffset tutorialOffset) { builder.AddOffset(2, tutorialOffset.Value, 0); }
@@ -143,6 +146,7 @@ public struct UserData : IFlatbufferObject
   public static void AddTrainingatk(FlatBufferBuilder builder, int trainingatk) { builder.AddInt(15, trainingatk, 0); }
   public static void AddTrainingatkspeed(FlatBufferBuilder builder, int trainingatkspeed) { builder.AddInt(16, trainingatkspeed, 0); }
   public static void AddTrainingcoin(FlatBufferBuilder builder, int trainingcoin) { builder.AddInt(17, trainingcoin, 0); }
+  public static void AddShowballdata(FlatBufferBuilder builder, Offset<BanpoFri.Data.ShowBallData> showballdataOffset) { builder.AddOffset(20, showballdataOffset.Value, 0); }
   public static Offset<BanpoFri.Data.UserData> EndUserData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.UserData>(o);
@@ -176,6 +180,7 @@ public struct UserData : IFlatbufferObject
     _o.Trainingatk = this.Trainingatk;
     _o.Trainingatkspeed = this.Trainingatkspeed;
     _o.Trainingcoin = this.Trainingcoin;
+    _o.Showballdata = this.Showballdata.HasValue ? this.Showballdata.Value.UnPack() : null;
   }
   public static Offset<BanpoFri.Data.UserData> Pack(FlatBufferBuilder builder, UserDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.UserData>);
@@ -200,6 +205,7 @@ public struct UserData : IFlatbufferObject
       _recordvalue = CreateRecordvalueVector(builder, __recordvalue);
     }
     var _money = _o.Money == null ? default(StringOffset) : builder.CreateString(_o.Money);
+    var _showballdata = _o.Showballdata == null ? default(Offset<BanpoFri.Data.ShowBallData>) : BanpoFri.Data.ShowBallData.Pack(builder, _o.Showballdata);
     return CreateUserData(
       builder,
       _o.Cash,
@@ -219,7 +225,8 @@ public struct UserData : IFlatbufferObject
       _o.Resetdaytime,
       _o.Trainingatk,
       _o.Trainingatkspeed,
-      _o.Trainingcoin);
+      _o.Trainingcoin,
+      _showballdata);
   }
 }
 
@@ -261,6 +268,8 @@ public class UserDataT
   public int Trainingatkspeed { get; set; }
   [Newtonsoft.Json.JsonProperty("trainingcoin")]
   public int Trainingcoin { get; set; }
+  [Newtonsoft.Json.JsonProperty("showballdata")]
+  public BanpoFri.Data.ShowBallDataT Showballdata { get; set; }
 
   public UserDataT() {
     this.Cash = 0;
@@ -281,6 +290,7 @@ public class UserDataT
     this.Trainingatk = 0;
     this.Trainingatkspeed = 0;
     this.Trainingcoin = 0;
+    this.Showballdata = null;
   }
 
   public static UserDataT DeserializeFromJson(string jsonText) {
@@ -323,6 +333,7 @@ static public class UserDataVerify
       && verifier.VerifyField(tablePos, 34 /*Trainingatk*/, 4 /*int*/, 4, false)
       && verifier.VerifyField(tablePos, 36 /*Trainingatkspeed*/, 4 /*int*/, 4, false)
       && verifier.VerifyField(tablePos, 38 /*Trainingcoin*/, 4 /*int*/, 4, false)
+      && verifier.VerifyTable(tablePos, 44 /*Showballdata*/, BanpoFri.Data.ShowBallDataVerify.Verify, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }
